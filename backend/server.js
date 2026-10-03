@@ -297,7 +297,7 @@ do {
       session.status === 'waiting' &&
       session.amount === uniqueAmount
   )
-);
+
     const startBlock = await provider.getBlockNumber();
 
     paymentSessions.set(paymentId, {
