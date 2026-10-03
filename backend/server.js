@@ -319,15 +319,15 @@ do {
       network: 'BSC',
       status: 'waiting',
     });
-  } catch (error) {
-    console.error(error);
+    } catch (error) {
+      console.error(error);
 
-    return res.status(500).json({
-      ok: false,
-      message: 'Could not create payment session',
+      return res.status(500).json({
+        ok: false,
+        message: 'Could not create payment session',
+      });
+    }
     });
-  }
-});
 // ================================
 // PAYMENT STATUS
 // ================================
