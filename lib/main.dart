@@ -1310,7 +1310,7 @@ class PaymentMethodTile extends StatelessWidget {
       onTap: () async {
           if (title.startsWith('USDT')) {
             final response = await http.post(
-              Uri.parse('http://localhost:3000/create-payment'),
+              Uri.parse('https://d0194.onrender.com/create-payment'),
             );
             final data = jsonDecode(response.body);
 
@@ -1320,7 +1320,7 @@ class PaymentMethodTile extends StatelessWidget {
 
             Future<void> checkPaymentStatus() async {
               final statusResponse = await http.get(
-                Uri.parse('http://localhost:3000/payment-status/$paymentId'),
+                Uri.parse('https://d0194.onrender.com/payment-status/$paymentId'),
               );
 
               final statusData = jsonDecode(statusResponse.body);
