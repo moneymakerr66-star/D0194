@@ -285,18 +285,21 @@ app.post('/create-payment', async (req, res) => {
       Date.now().toString() +
       Math.random().toString(36).substring(2, 10);
 let uniqueAmount;
+    let alreadyUsed;
 
-do {
-  const uniquePart =
-      Math.floor(Math.random() * 99) + 1;
+    do {
+      const uniquePart =
+        Math.floor(Math.random() * 99) + 1;
 
-  uniqueAmount =
-      (10 + uniquePart / 10000).toFixed(4);
-  [...paymentSessions.values()].some(
-    (session) =>
-      session.status === 'waiting' &&
-      session.amount === uniqueAmount
-  )
+      uniqueAmount =
+        (10 + uniquePart / 10000).toFixed(4);
+
+      alreadyUsed = [...paymentSessions.values()].some(
+        (session) =>
+          session.status === 'waiting' &&
+          session.amount === uniqueAmount
+      );
+    } while (alreadyUsed);
 
     const startBlock = await provider.getBlockNumber();
 
@@ -319,15 +322,15 @@ do {
       network: 'BSC',
       status: 'waiting',
     });
-    } catch (error) {
-      console.error(error);
+  } catch (error) {
+    console.error(error);
 
-      return res.status(500).json({
-        ok: false,
-        message: 'Could not create payment session',
-      });
-    }
+    return res.status(500).json({
+      ok: false,
+      message: 'Could not create payment session',
     });
+  }
+});
 // ================================
 // PAYMENT STATUS
 // ================================
