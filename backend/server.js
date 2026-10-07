@@ -405,7 +405,8 @@ async function checkAutomaticPayments() {
         const confirmations =
           currentBlock - log.blockNumber + 1;
 
-        if (amount < 9.50 || amount > 10.90) continue;
+        if (confirmations < MIN_CONFIRMATIONS) {
+          continue;
         }
 
         session.status = 'paid';
