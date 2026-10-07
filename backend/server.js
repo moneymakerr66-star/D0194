@@ -378,9 +378,9 @@ async function checkAutomaticPayments() {
         fromBlock: session.startBlock,
         toBlock: currentBlock,
         topics: [
-          id('Transfer(address,address,uint256)'),
+          ethers.id('Transfer(address,address,uint256)'),
           null,
-          zeroPadValue(DEPOSIT_ADDRESS, 32),
+          ethers.zeroPadValue(DEPOSIT_ADDRESS, 32),
         ],
       };
 
